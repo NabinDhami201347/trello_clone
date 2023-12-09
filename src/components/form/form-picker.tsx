@@ -79,9 +79,16 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
               className="hidden"
               checked={selectedImageId === image.id}
               disabled={pending}
-              value={`${image.id}|${image.urls.thumb}|${image.urls.full}|${image.links.html}|${image.user.name}`}
+              value={`${image.id}|${image.urls.thumb}|${image.urls.full}|${image.links.html}|${image.user.name}|${image.blur_hash}`}
             />
-            <Image src={image.urls.thumb} alt="Unsplash image" className="object-cover rounded-sm" fill />
+            <Image
+              src={image.urls.thumb}
+              placeholder="blur"
+              blurDataURL={image.blur_hash}
+              alt="Unsplash image"
+              className="object-cover rounded-sm"
+              fill
+            />
 
             {selectedImageId === image.id && (
               <div className="absolute inset-y-0 h-full w-full bg-black/30 flex items-center justify-center">
