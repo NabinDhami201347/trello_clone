@@ -67,3 +67,32 @@ const onSubmit = (formData: FormData) => {
   execute({ title, listId, boardId });
 };
 ```
+
+---
+
+```ts
+const [isEditing, setIsEditing] = useState(false);
+
+const formRef = useRef<ElementRef<"form">>(null);
+const textareaRef = useRef<ElementRef<"textarea">>(null);
+
+const enableEditing = () => {
+  setIsEditing(true);
+  setTimeout(() => {
+    textareaRef.current?.focus();
+  });
+};
+
+const disableEditing = () => {
+  setIsEditing(false);
+};
+
+const onKeyDown = (e: KeyboardEvent) => {
+  if (e.key === "Escape") {
+    disableEditing();
+  }
+};
+
+useEventListener("keydown", onKeyDown);
+useOnClickOutside(formRef, disableEditing);
+```
