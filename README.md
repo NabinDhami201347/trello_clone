@@ -1,98 +1,10 @@
-```tsx
-import { useEventListener } from "usehooks-ts";
+# [Fullstack Trello Clone](https://www.youtube.com/watch?v=pRybm9lXW2c&ab_channel=CodeWithAntonio)
 
-const onKeyDown = (e: KeyboardEvent) => {
-  if (e.key === "Escape") {
-    formRef.current?.requestSubmit();
-  }
-};
+This Fullstack Trello Clone leverages a powerful tech stack, incorporating **Next.js 14**, **Server Actions**, **React**, **Prisma**, **Stripe**, **Tailwind**, and **MySQL**. The application boasts a range of key features, including robust **authentication** for secure access, flexible **organization and workspace management**, dynamic **board creation** enriched with captivating Unsplash API-integrated cover images, and a detailed **activity log** providing insights into organizational activities. Users can seamlessly perform operations such as board, list, and card creation, renaming, deletion, and reordering. The system also implements **board limits** for effective resource management. The UI, designed with `shadcnUI` and `TailwindCSS`, promises a visually pleasing and responsive experience. The integration of **Stripe** opens avenues for potential premium features or subscription models, further enhancing the versatility of this Fullstack Trello Clone.
 
-useEventListener("keydown", onKeyDown);
-```
-
-```tsx
-const [isEditing, setIsEditing] = useState(false);
-
-const textareaRef = useRef<ElementRef<"textarea">>(null);
-
-const disableEditing = () => {
-  setIsEditing(false);
-};
-
-const enableEditing = () => {
-  setIsEditing(true);
-  setTimeout(() => {
-    textareaRef.current?.focus();
-  });
-};
-```
-
----
-
-```tsx
-const params = useParams();
-const formRef = useRef<ElementRef<"form">>(null);
-
-const { execute, fieldErrors } = useAction(createCard, {
-  onSuccess: (data) => {
-    toast.success(`Card "${data.title}" created`);
-    formRef.current?.reset();
-  },
-  onError: (error) => {
-    toast.error(error);
-  },
-});
-
-const onKeyDown = (e: KeyboardEvent) => {
-  if (e.key === "Escape") {
-    disableEditing();
-  }
-};
-
-useOnClickOutside(formRef, disableEditing);
-useEventListener("keydown", onKeyDown);
-
-const onTextareakeyDown: KeyboardEventHandler<HTMLTextAreaElement> = (e) => {
-  if (e.key === "Enter" && !e.shiftKey) {
-    e.preventDefault();
-    formRef.current?.requestSubmit();
-  }
-};
-
-const onSubmit = (formData: FormData) => {
-  const title = formData.get("title") as string;
-  const listId = formData.get("listId") as string;
-  const boardId = params.boardId as string;
-
-  execute({ title, listId, boardId });
-};
-```
-
----
-
-```ts
-const [isEditing, setIsEditing] = useState(false);
-
-const formRef = useRef<ElementRef<"form">>(null);
-const textareaRef = useRef<ElementRef<"textarea">>(null);
-
-const enableEditing = () => {
-  setIsEditing(true);
-  setTimeout(() => {
-    textareaRef.current?.focus();
-  });
-};
-
-const disableEditing = () => {
-  setIsEditing(false);
-};
-
-const onKeyDown = (e: KeyboardEvent) => {
-  if (e.key === "Escape") {
-    disableEditing();
-  }
-};
-
-useEventListener("keydown", onKeyDown);
-useOnClickOutside(formRef, disableEditing);
-```
+![dashboard](public/screenshots/dashboard.png)
+![loading_state](public/screenshots/loading_state.png)
+![create_board](public/screenshots/create_board.png)
+![drag_drop](public/screenshots/drag_drop.png)
+![car_model](public/screenshots/card_model.png)
+![switching_workspaces](public/screenshots/switching_workspaces.png)

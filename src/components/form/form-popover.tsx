@@ -46,7 +46,7 @@ export const FormPopover = ({ children, side = "bottom", align, sideOffset = 0 }
     <Popover>
       <PopoverTrigger asChild>{children}</PopoverTrigger>
 
-      <PopoverContent align={align} className="w-80 pt-3" side={side} sideOffset={sideOffset}>
+      <PopoverContent align={align} className="w-96 pt-3" side={side} sideOffset={sideOffset}>
         <div className="text-sm font-medium text-center text-neutral-600 pb-4">Create board</div>
         <PopoverClose ref={closeRef} asChild>
           <Button className="h-auto w-auto p-2 absolute top-2 right-2 text-neutral-600" variant="ghost">
